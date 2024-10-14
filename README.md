@@ -1,2 +1,2 @@
-Library Management System
+Library Management System:
 Welcome to the Library Management System project! This C++ application provides a user-friendly interface for managing a library's collection of books and members. Users can easily add new books, register library members, and facilitate book borrowing and returning processes. The system maintains up-to-date records of available books and tracks borrowed items for each member. This project is designed to help users efficiently manage their library resources, making it an ideal solution for small libraries or personal collections. Future enhancements will include additional features such as search functionalities, user authentication, and improved data storage options. Feel free to contribute and explore the code!
