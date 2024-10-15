@@ -1,5 +1,6 @@
 #include "header.h"
 using namespace std;
+
 int main() {
     Library library;
 
@@ -12,6 +13,12 @@ int main() {
     library.registerMember(Member("Bob", 2));
 
     // Display books
+    library.displayBook();
+
+    // Add a book from user input
+    library.addBookFromUserInput();
+
+    // Display books again after adding the new book
     library.displayBook();
 
     // Borrow books

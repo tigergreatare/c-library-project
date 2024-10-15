@@ -8,7 +8,9 @@ void Library::addBook(const Book& book) {
 void Library::registerMember(const Member& member) {
     members.push_back(member);
 }
-
+void Library::registerUserAddedMember(const Member& member) {
+    userAddedMembers.push_back(member);
+}
 void Library::displayBook() {
     for (const auto& book : books) {
         std::cout << "Title: " << book.title
@@ -54,4 +56,17 @@ bool Library::returnBook(int memberId, const std::string& ISBN) {
     }
     std::cout << "Member not found." << std::endl;
     return false; // Member not found
+}
+void Library::addBookFromUserInput() {
+    string title, author, isbn;
+    cout << "Enter book title: ";
+    getline(cin, title);
+    cout << "Enter book author: ";
+    getline(cin, author);
+    cout << "Enter book ISBN: ";
+    getline(cin, isbn);
+
+    Book newBook(title, author, isbn);
+    addBook(newBook);
+    cout << "Book added successfully!" << endl;
 }
