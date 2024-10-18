@@ -8,19 +8,21 @@ void Library::addBook(const Book& book) {
 void Library::registerMember(const Member& member) {
     members.push_back(member);
 }
+
 void Library::registerUserAddedMember(const Member& member) {
     userAddedMembers.push_back(member);
 }
+
 void Library::displayBook() {
     for (const auto& book : books) {
-        std::cout << "Title: " << book.title
+        cout << "Title: " << book.title
             << ", Author: " << book.author
             << ", ISBN: " << book.ISBN
             << ", Available: " << (book.isavailable ? "Yes" : "No") << endl;
     }
 }
 
-bool Library::borrowBook(int memberId, const std::string& ISBN) {
+bool Library::borrowBook(int memberId, const string& ISBN) {
     for (auto& member : members) {
         if (member.ID == memberId) {
             for (auto& book : books) {
@@ -31,11 +33,11 @@ bool Library::borrowBook(int memberId, const std::string& ISBN) {
                     return true;
                 }
             }
-            std::cout << "Book not available or does not exist." << std::endl;
+            cout << "Book not available or does not exist." << std::endl;
             return false; // Book not available or doesn't exist
         }
     }
-    std::cout << "Member not found." << std::endl;
+    cout << "Member not found." << std::endl;
     return false; // Member not found
 }
 
@@ -45,20 +47,22 @@ bool Library::returnBook(int memberId, const std::string& ISBN) {
             for (auto it = member.BorrowedBooks.begin(); it != member.BorrowedBooks.end(); ++it) {
                 if ((*it)->ISBN == ISBN) {
                     (*it)->isavailable = true; // Mark the book as available
-                    std::cout << member.name << " returned " << (*it)->title << std::endl;
+                    cout << member.name << " returned " << (*it)->title << std::endl;
                     member.BorrowedBooks.erase(it); // Remove from member's list
                     return true;
                 }
             }
-            std::cout << "This book was not borrowed by the member." << std::endl;
+            cout << "This book was not borrowed by the member." << std::endl;
             return false; // Book was not borrowed by the member
         }
     }
-    std::cout << "Member not found." << std::endl;
+    cout << "Member not found." << std::endl;
     return false; // Member not found
 }
+
 void Library::addBookFromUserInput() {
     string title, author, isbn;
+    cin.ignore();
     cout << "Enter book title: ";
     getline(cin, title);
     cout << "Enter book author: ";
@@ -70,3 +74,45 @@ void Library::addBookFromUserInput() {
     addBook(newBook);
     cout << "Book added successfully!" << endl;
 }
+
+void Library::displayMembers() {
+    for (const auto& member : members) {
+        std::cout << "Name: " << member.name << ", ID: " << member.ID << endl;
+    }
+}
+
+void Library::editBook(const string& ISBN) {
+    for (auto& book : books) {
+        if (book.ISBN == ISBN) {
+            string newTitle, newAuthor;
+            cout << "Enter new title (or press enter to keep the current title): ";
+            getline(cin, newTitle);
+            cout << "Enter new author (or press enter to keep the current author): ";
+            getline(cin, newAuthor);
+            if (!newTitle.empty()) book.title = newTitle;
+            if (!newAuthor.empty()) book.author = newAuthor;
+            cout << "Book details updated!" << endl;
+            return;
+        }
+    }
+    cout << "Book not found!" << endl;
+}
+
+Book* Library::searchBookByTitle(const string& title) {
+    for (auto& book : books) {
+        if (book.title == title) {
+            return &book;
+        }
+    }
+    return nullptr; 
+}
+
+Book* Library::searchBookByISBN(const string& ISBN) {
+    for (auto& book : books) {
+        if (book.ISBN == ISBN) {
+            return &book;
+        }
+    }
+    return nullptr; 
+}
+
