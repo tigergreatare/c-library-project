@@ -78,7 +78,7 @@ void Library::addBookFromUserInput() {
 
 void Library::displayMembers() {
     for (const auto& member : members) {
-        std::cout << "Name: " << member.name << ", ID: " << member.ID << endl;
+        cout << "Name: " << member.name << ", ID: " << member.ID << endl;
     }
 }
 
