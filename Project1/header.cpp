@@ -1,4 +1,5 @@
 #include "header.h"
+#include <iostream>
 using namespace std;
 
 void Library::addBook(const Book& book) {
@@ -17,8 +18,8 @@ void Library::displayBook() {
     for (const auto& book : books) {
         cout << "Title: " << book.title
             << ", Author: " << book.author
-            << ", ISBN: " << book.ISBN
-            << ", Available: " << (book.isavailable ? "Yes" : "No") << endl;
+            << ", ISBN: " << book.ISBN << endl;
+           cout << " Available: " << (book.isavailable ? "Yes" : "No") << endl;
     }
 }
 

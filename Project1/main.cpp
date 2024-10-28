@@ -3,8 +3,14 @@
 using namespace std;
 
 int main() {
+    cout << "*************************************************************************" << endl;
+    cout << "" << endl;
+    cout << "              Library Management System        " << endl;
+    cout << "" << endl;
+    cout << "*************************************************************************" << endl;
+    cout << "" << endl;
     Library library;
-
+  
     // Add initial books
     library.addBook(Book("The Great Gatsby", "F. Scott Fitzgerald", "123456789"));
     library.addBook(Book("1984", "George Orwell", "987654321"));
